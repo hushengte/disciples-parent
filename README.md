@@ -1,2 +1,2 @@
-# iam
-Parent for disciples group
+# disciples-parent
+Parent project for disciples group
