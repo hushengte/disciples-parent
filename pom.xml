@@ -2,48 +2,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.hushengte</groupId>
+	<groupId>com.disciples</groupId>
 	<artifactId>disciples-parent</artifactId>
-	<version>2.0.0</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>disciples-parent</name>
 	<description>Parent project for disciples group</description>
 	<url>https://github.com/hushengte/disciples-parent</url>
 	
-	<licenses>
-		<license>
-			<name>MIT License</name>
-    		<url>http://www.opensource.org/licenses/mit-license.php</url>
-		</license>
-	</licenses>
-	
-	<developers>
-		<developer>
-			<name>Ted Smith</name>
-      		<email>hushengte@qq.com</email>
-      		<organization>Github</organization>
-      		<organizationUrl>https://github.com/hushengte</organizationUrl>
-		</developer>
-	</developers>
-	
-	<scm>
-		<connection>scm:git:git://github.com/hushengte/disciples-parent.git</connection>
-  		<developerConnection>scm:git:ssh://github.com:hushengte/disciples-parent.git</developerConnection>
-  		<url>http://github.com/hushengte/disciples-parent/tree/master</url>
-	</scm>
-	
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh</id>
-	        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>disciples-nexus</id>
+	        <url>http://120.26.164.37:7081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 		<repository>
-	        <id>ossrh</id>
-	        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+	        <id>disciples-nexus</id>
+	        <url>http://120.26.164.37:7081/repository/maven-releases/</url>
 	    </repository>
 	</distributionManagement>
 	
+	<repositories>
+        <repository>
+            <id>disciples-nexus</id>
+            <url>http://120.26.164.37:7081/repository/maven-public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -57,7 +49,6 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         
@@ -186,25 +177,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${maven-gpg-plugin.version}</version>
-                    <configuration>
-                        <repositoryId>ossrh</repositoryId>
-                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                        <passphraseServerId>disciples</passphraseServerId>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
                 </plugin>
@@ -224,9 +196,6 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-gpg-plugin</artifactId>
             </plugin>
         </plugins>
 	</build>
